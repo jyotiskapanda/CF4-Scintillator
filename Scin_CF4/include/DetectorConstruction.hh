@@ -76,7 +76,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4LogicalVolume *fCountingVolume2;
     G4LogicalVolume *fCountingVolume3;
     
-    //virtual void ConstructSDandField();
+  
 };
 	
 
@@ -87,11 +87,7 @@ inline const G4VPhysicalVolume* DetectorConstruction::GetCalorimeterPV() const  
   return fCalorimeterPV; 
 }
 
-//inline const G4VPhysicalVolume* DetectorConstruction::GetphysDetector() const  { 
-  //return physDetector; 
-//}
 
-     
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 

@@ -20,32 +20,5 @@ private:
   
 };
 
-//#endif
-
-/*class SteppingAction : public G4UserSteppingAction
-{
-public:
-	SteppingAction(EventAction* eventAction);
-	~SteppingAction();
-	                    
-	virtual void UserSteppingAction(const G4Step*);
-	
-private:
-	const DetectorConstruction* fDetConstruction;
-	EventAction *fEventAction;
-
-};*/
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif

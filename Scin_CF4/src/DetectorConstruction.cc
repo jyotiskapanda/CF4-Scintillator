@@ -103,7 +103,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   
  
   std::vector<G4double> scintilFast = {
-    //0.00, 0.20, 0.28, 0.10, 0.05, 0.00, 0.00, 0.05, 0.10, 0.18, 0.10, 0.00, 0.00
     
     0.00, 0.00, 0.10, 0.18, 0.10, 0.05, 0.00, 0.00, 0.05, 0.10, 0.28, 0.20, 0.00
     
@@ -112,35 +111,11 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   
   //std::vector<G4double> scintilSlow = {
     //50.0, 50.0, 50.0, 50.0
-  //}; //same length with photonEnergy
+  //}; //Not needed here because the decay is monoexponential.
 
   G4MaterialPropertiesTable* myScin = new G4MaterialPropertiesTable();
 
-  // Values can be added to the material property table individually.
-  // With this method, spline interpolation cannot be set. Arguments
-  // createNewKey and spline both take their default values of false.
-  // Need to specify the number of entries (1) in the arrays, as an argument
-  // to AddProperty.
-  G4int numEntries = 1;
-  /*myScin->AddProperty("RINDEX", &photonEnergy[0], &refractiveIndex1[0],
-                      numEntries);
-
-  for(size_t i = 1; i < photonEnergy.size(); ++i)
-  {
-    myScin->AddEntry("RINDEX", photonEnergy[i], refractiveIndex1[i]);
-  }
-
-  // Check that group velocity is calculated from RINDEX
-  if(myScin->GetProperty("RINDEX")->GetVectorLength() !=
-     myScin->GetProperty("GROUPVEL")->GetVectorLength())
-  {
-    G4ExceptionDescription ed;
-    ed << "Error calculating group velocities. Incorrect number of entries "
-          "in group velocity material property vector.";
-    G4Exception("OpNovice::OpNoviceDetectorConstruction", "OpNovice001",
-                FatalException, ed);
-  }*/
-
+  
   // Adding a property from two std::vectors. Argument createNewKey is false
   // and spline is true.
   myScin->AddProperty("RINDEX", photonEnergy, refractiveIndex1, 13);
@@ -151,13 +126,11 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // Arguments spline and createNewKey both take default value false.
   myScin->AddProperty("SCINTILLATIONCOMPONENT1", photonEnergy, scintilFast, false, false);
 
-  //myScin->AddProperty("SCINTILLATIONCOMPONENT2", photonEnergy, scintilSlow, false, true);
-  myScin->AddConstProperty("SCINTILLATIONYIELD", 2700. / MeV);//2683
+  //myScin->AddProperty("SCINTILLATIONCOMPONENT2", photonEnergy, scintilSlow, false, true);//Monoexponential, not needed.
+  myScin->AddConstProperty("SCINTILLATIONYIELD", 2700. / MeV);
   myScin->AddConstProperty("RESOLUTIONSCALE", 1.0);
-  myScin->AddConstProperty("SCINTILLATIONTIMECONSTANT1", 8.5*ns);
-  //myScin->AddConstProperty("SCINTILLATIONTIMECONSTANT2", 15.5*ns);
+  myScin->AddConstProperty("SCINTILLATIONTIMECONSTANT1", 8.5*ns);//Source: Liu et. al., Primary scintillation characteristics of ar+cf4 gas mixtures excited by proton and alpha particles. Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment, 694:157–161, 2012
   myScin->AddConstProperty("SCINTILLATIONRISETIME1", 1.0*ns);
-  //myScin->AddConstProperty("SCINTILLATIONRISETIME2", 2.0*ns);
   myScin->AddConstProperty("SCINTILLATIONYIELD1", 1.0);
   myScin->AddConstProperty("SCINTILLATIONYIELD2", 0.0);
   
@@ -177,8 +150,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     10.0 * m,  10.0 * m,  10.0 * m,  10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m
   };
   
- 
-//
   G4MaterialPropertiesTable* myMPT2 = new G4MaterialPropertiesTable();
   myMPT2->AddProperty("RINDEX", photonEnergy, refractiveIndex2, 13);
   myMPT2->AddProperty("ABSLENGTH", photonEnergy, absorption2, 13);
@@ -194,8 +165,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     10.0 * m,  10.0 * m,  10.0 * m,  10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m
   };
   
- 
-//
+
   G4MaterialPropertiesTable* myMPT3 = new G4MaterialPropertiesTable();
   myMPT3->AddProperty("RINDEX", photonEnergy, refractiveIndex3, 13);
   myMPT3->AddProperty("ABSLENGTH", photonEnergy, absorption3, 13);
@@ -222,7 +192,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   
   WinMat->SetMaterialPropertiesTable(myMPT3);
   
-  //fReflectorOpticalSurface->SetMaterialPropertiesTable(myMPT4);
   
   //wallMat->SetMaterialPropertiesTable(myMPT5);
   
@@ -282,13 +251,16 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
    
                       
   //PMT
+    
+  
+  G4double WinRadius = 4.7*cm; 
+  G4double WinLength = 1.*cm; 
 
-  G4double WinRadius = 4.7*cm; // 5.3 +- 0.15
-  G4double WinLength = 1.*cm; // 12.7 +- 2
+  
 
 
-  G4double PMTRadius = 4.6*cm; // 5.3 +- 0.15
-  G4double PMTLength = 12.7*cm; // 12.7 +- 2
+  G4double PMTRadius = 4.6*cm; 
+  G4double PMTLength = 12.7*cm; 
   G4ThreeVector positionPMT1 = G4ThreeVector(0,0,-calorSizeZ/2 - PMTLength/2 - WinLength/2);
   G4ThreeVector positionPMT2 = G4ThreeVector(calorSizeZ/2 + PMTLength/2 + WinLength/2,0,0);//WinLength/2
   G4ThreeVector positionPMT3 = G4ThreeVector(0,0,calorSizeZ/2 + PMTLength/2 + WinLength/2);
@@ -371,14 +343,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
                     
   //===================================Glass Windows==================================
   
-  
-  
-  
+
    
   G4ThreeVector positionWin1 = G4ThreeVector(0,0,-calorSizeZ/2);
   G4ThreeVector positionWin2 = G4ThreeVector(calorSizeZ/2 ,0,0);
   G4ThreeVector positionWin3 = G4ThreeVector(0,0,calorSizeZ/2);
-//  G4double PMTwindowradius = 46.*cm; // minimal window size
+
 
   G4Tubs* Win1
     = new G4Tubs("Win1", 0.,WinRadius/2,WinLength/2,0.*deg,360.*deg);
@@ -452,19 +422,16 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   
   
    
-   /*//====================== Reflective Wrapping =============================
+   //====================== Reflective Wrapping =============================
    
-   
-   
-   G4double sigma_alpha = 0.1;
+
    G4OpticalSurface* OpSurface = new G4OpticalSurface("reflector");
    
    G4LogicalBorderSurface* Surface = new
 G4LogicalBorderSurface("reflector", fCalorimeterPV, worldPV,OpSurface);
    OpSurface -> SetType(dielectric_metal);
-   //OpSurface -> SetFinish(groundbackpainted);
    OpSurface -> SetModel(glisur);
-   //OpSurface -> SetSigmaAlpha(sigma_alpha);
+
    
    
   
@@ -475,7 +442,7 @@ G4LogicalBorderSurface("reflector", fCalorimeterPV, worldPV,OpSurface);
 
    0.868, 0.875, 0.880, 0.907, 0.910, 0.913, 0.918, 0.919, 0.920, 0.921, 0.922, 0.926, 0.930
   
-  };//https://laserbeamproducts.wordpress.com/2014/06/19/reflectivity-of-aluminium-uv-visible-and-infrared/      (For pure uncoated Aluminium)
+  };//https://laserbeamproducts.wordpress.com/2014/06/19/reflectivity-of-aluminium-uv-visible-and-infrared/      (For pure uncoated Aluminum)
   
   std::vector<G4double> efficiency = {
     1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1. ,1.
@@ -488,7 +455,7 @@ G4LogicalBorderSurface("reflector", fCalorimeterPV, worldPV,OpSurface);
    
    
    
-   //=======================================================================*/
+   //=======================================================================
    
    
    

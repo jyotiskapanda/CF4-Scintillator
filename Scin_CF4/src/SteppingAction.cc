@@ -47,8 +47,6 @@ void SteppingAction::UserSteppingAction(const G4Step *step)//G4Step* aStep
 	
 	G4AnalysisManager *man = G4AnalysisManager::Instance();
 	
-	//if(volume != fScoringVolume)
-	//	return;
 	if(volume == fScoringVolume){
 	G4double Edep = step->GetTotalEnergyDeposit();
 		
@@ -79,14 +77,11 @@ void SteppingAction::UserSteppingAction(const G4Step *step)//G4Step* aStep
         	//G4cout<< "Scintillation Captured in PMT1! "<<G4endl;
         	//G4cout<< step->GetTrack()->GetCreatorProcess()->GetProcessName()  << G4endl ;
         	
-        	G4cout<< time1 <<G4endl;
+        	//G4cout<< time1 <<G4endl;
         	man->FillH1(0, time1);
       		fEventAction->AddCount1(i1);
       		//step->GetTrack()->SetTrackStatus(fStopAndKill);
       		
-      		/*if(time <= 5.0){
-      		G4cout<< step->GetTrack()->GetCreatorProcess()->GetProcessName()  << G4endl ;
-      		}*/
       		}
         }
         if(volume == fCountingVolume2){
@@ -113,76 +108,9 @@ void SteppingAction::UserSteppingAction(const G4Step *step)//G4Step* aStep
       		//step->GetTrack()->SetTrackStatus(fStopAndKill);
       		}
         }
+        }
         
-    //}
     
-        
-        
-        
-        
-        
-  /*  if( poststep == DetectorConstruction->physDetector() ) {
-    //G4cout<<globaltime<<G4endl;
-    if(step->GetTrack()->GetDynamicParticle()->GetParticleDefinition() == opticalphoton){
-      if(step->GetTrack()->GetCreatorProcess()->GetProcessName()=="Scintillation"){
-      	G4int i = 1;
-      	G4cout<< "Scintillation Captured! "<<G4endl;
-      	fEventAction->AddCount(i);
-      ///G4cout<< step->GetTrack()->GetCreatorProcess()->GetProcessName()  << G4endl ; 
-        //fEventAction->AddScintillationDetected(globaltime);
-        //analysisManager->FillH1(3,globaltime/CLHEP::ns);
-        step->GetTrack()->SetTrackStatus(fStopAndKill);
-      }
-    }
-  }*/
-        
-        
-	
-	//G4VPhysicalVolume *physVol = touchable->GetVolume();
-	//G4ThreeVector posDetector = physVol->GetTranslation();
-	/*G4double count = 0;
-	if(posPhoton[0]>=-0.15*cm && posPhoton[0]<=0.15*cm && posPhoton[1]>=-0.15*cm && posPhoton[1]<=0.15*cm && posPhoton[2]>=2.6*cm){
-	count++;
-	}*/
-	
-	
-	//=============
-	
-  //auto poststep = aStep->GetPostStepPoint()->GetTouchableHandle()->GetVolume();
-  //if( poststep == fDetConstruction->GetCalorimeterPV() ){
-    //G4double EdepStep = aStep->GetTotalEnergyDeposit();
-    //G4cout <<"IN "<< EdepStep<<G4endl;
-    //fEventAction->AddEdep(EdepStep);
-  }
-
-
-/*SteppingAction::SteppingAction(EventAction *eventAction)
-{
-	fEventAction = eventAction;
-}
-
-SteppingAction::~SteppingAction()
-{}
-
-void SteppingAction::UserSteppingAction(const G4Step *step)
-{
-	G4LogicalVolume *volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetLogicalVolume();
-	
-	const DetectorConstruction *detectorConstruction = static_cast<const DetectorConstruction*> (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-	
-	G4LogicalVolume *fScoringVolume = detectorConstruction->GetScoringVolume();
-	
-	if(volume != fScoringVolume)
-		return;
-	
-	G4double edep = step->GetTotalEnergyDeposit();
-	fEventAction->AddEdep(edep);
-}*/
-
-
-
-
-
 
 
 

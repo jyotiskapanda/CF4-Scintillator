@@ -41,6 +41,14 @@
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
+/*=========================================================================================
+
+
+Comment/Uncomment according to the method required.
+
+
+=============================================================================================*/
+
 /*class PhysicsList: public G4VUserPhysicsList
 {
   public:

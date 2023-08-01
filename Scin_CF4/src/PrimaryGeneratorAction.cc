@@ -56,19 +56,9 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
   fParticleGun3->SetParticlePosition(G4ThreeVector(0,40*cm,0));
   
   
-  
-  
-  
-  
-  
-  
+
   
   //============================================== 
-  
-  
-  
-  
-  
   
 
 }
@@ -84,6 +74,9 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
+
+//For creating a muon shower where muon can come from any point in the area and by any direction.
+
   G4double Xpos = (2.*(G4double)G4UniformRand()-1.)*20.*cm;
   G4double Zpos = (2.*(G4double)G4UniformRand()-1.)*20.*cm;
   
@@ -95,6 +88,9 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   
  fParticleGun3->SetParticlePosition(G4ThreeVector(Xpos,1.5*m,Zpos));
  fParticleGun3->SetParticleMomentumDirection(G4ThreeVector(xdir, -2.0, zdir));
+  
+  //Comment and Uncomment the codes below depending on the generator needed:
+  
   
   //fParticleGun1->GeneratePrimaryVertex(anEvent);
   //fParticleGun2->GeneratePrimaryVertex(anEvent);

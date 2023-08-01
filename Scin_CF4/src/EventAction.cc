@@ -40,42 +40,33 @@ void EventAction::EndOfEventAction( const G4Event*)
 	man->FillNtupleIColumn(1, count1); 
 	man->FillNtupleIColumn(2, count2);
 	man->FillNtupleIColumn(3, count3);
-	//man->FillNtupleDColumn(4, time1);
-	//man->FillNtupleDColumn(5, time2);
-	//man->FillNtupleDColumn(6, time3);
-	
+
 	man->AddNtupleRow(0);                       
 
+// The part below is needed when a random shower is simulated. For those cases, for the maximum number of events, the counts and total energy deposited per event is 0
+
+
   if(fTotalEnergyDeposit>0){
-   // G4cout << fTotalEnergyDeposit/MeV << G4endl;
     man->FillH1(3, fTotalEnergyDeposit/MeV);
   }
+  
+  if(count1>0){
+  
+    man->FillH1(4, count1);
+  }
+  if(count2>0){
+  
+    man->FillH1(5, count2);
+  }
+  if(count3>0){
+  
+    man->FillH1(6, count3);
+  }
+  
+  
   }
 
 
-/*EventAction::EventAction(RunAction*)
-{
-	fEdep = 0.;
-}
-
-EventAction::~EventAction()
-{}
-
-void EventAction::BeginOfEventAction(const G4Event*)
-{
-	fEdep = 0.;
-}
-
-void EventAction::EndOfEventAction(const G4Event*)
-{
-	G4cout << "Energy deposition: " << fEdep << G4endl;
-	
-	G4AnalysisManager *man = G4AnalysisManager::Instance();
-	
-	man->FillNtupleDColumn(0, 0, fEdep); //ntuple no, col no
-	
-	man->AddNtupleRow(0);
-}*/
 
 
 

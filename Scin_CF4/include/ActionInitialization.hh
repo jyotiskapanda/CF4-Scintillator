@@ -24,17 +24,4 @@ class ActionInitialization : public G4VUserActionInitialization
 
 #endif
 
-/*class ActionInitialization : public G4VUserActionInitialization
-{
-public:
-	ActionInitialization();
-	~ActionInitialization();
-	
-	virtual void Build() const;
 
-};
-
-#endif */
-
-
-    

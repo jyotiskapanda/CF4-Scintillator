@@ -36,21 +36,4 @@ class EventAction : public G4UserEventAction
 
 #endif
 
-/*class EventAction : public G4UserEventAction
-{
-public:
-	EventAction(RunAction*);
-	~EventAction();
-	
-	virtual void BeginOfEventAction(const G4Event*);
-	virtual void EndOfEventAction(const G4Event*);
-	
-	void AddEdep(G4double edep) {fEdep += edep;}
 
-private:
-	G4double fEdep;
-	
-};
-
-#endif*/
-    

@@ -43,6 +43,30 @@
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
+
+
+/*=================================================================================================================================
+===================================================================================================================================
+
+Physics List contains all the possible physics processes for all the particles involved in the simulation. It can be created in two ways, both of them are written in here:
+
+
+1) Think about all the physics phenomena that could happen with the particles, for example: for gamma, photo elecric effect, gamma conversion, Compton Scattering etc. and for mu-, Coulomb Scattering, Bremsstrahlung etc. In this method, missing any of the possible physics phenomena will lead to erroraneous results.
+
+2) Use GEANT4 predefined modules like G4EmStandardPhysics_option4(). It already contains all possible phenomena for many particles.
+
+
+
+This code includes both the methods. Please comment and uncomment depending on the required method.
+
+P.S. Change the header file (PhysicsList.hh) accordingly
+
+
+==============================================================================================================================
+==============================================================================================================================*/
+
+
+
 /*PhysicsList::PhysicsList()
 : G4VUserPhysicsList()
 {
@@ -117,7 +141,7 @@ void PhysicsList::ConstructProcess()
 #include "G4MuPairProduction.hh"
 
 //==============
-#include "G4RadioactiveDecayPhysics.hh"
+
 #include "G4DecayPhysics.hh"
 #include "G4Region.hh"
 #include "G4RegionStore.hh"
@@ -127,7 +151,6 @@ void PhysicsList::ConstructProcess()
 /*void PhysicsList::ConstructEM()
 {
 
-  //RegisterPhysics(new G4EmStandardPhysics_option4());
 
   G4PhysicsListHelper* ph = G4PhysicsListHelper::GetPhysicsListHelper();
   
@@ -189,7 +212,7 @@ PhysicsList::PhysicsList() : G4VModularPhysicsList() {
   
 
   // EM physics
-  //RegisterPhysics(new G4EmPenelopePhysics());
+
   RegisterPhysics(new G4EmStandardPhysics_option4());
 }
 
