@@ -89,8 +89,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   };
 
   std::vector<G4double> refractiveIndex1 = {
-        1.000480, 1.000480, 1.000480, 1.0004805, 1.000481, 1.000482, 1.000485, 1.000488, 1.000490, 1.000495, 1.000498, 1.000510, 1.000525 
-  };
+    1.000480, 1.000480, 1.000480, 1.0004805, 1.000481, 1.000482, 1.000485, 1.000488, 1.000490, 1.000495, 1.000498, 1.000510, 1.000525 
+  };//Source: R. Abjean, A. Bideau-Mehu, and Y. Guern. Refractive index of carbon tetrafluoride (cf4) in the 300-140 nm wavelength range. Nuclear Instruments and Methods in Physics Research Section A: Accelerators,Spectrometers, Detectors and Associated Equipment, 292(3):593–594, 1990.
   std::vector<G4double> absorption = {
     10.0 * m,  10.0 * m,  10.0 * m,  10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m
   }; 
