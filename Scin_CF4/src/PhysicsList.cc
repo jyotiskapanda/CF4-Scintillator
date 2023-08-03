@@ -113,9 +113,9 @@ void PhysicsList::ConstructProcess()
 {
   AddTransportation();
   ConstructEM();
-}
+}*/
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......*/
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #include "G4PhysicsListHelper.hh"
 
@@ -205,7 +205,7 @@ void PhysicsList::SetCuts()
   SetCutValue(defaultCutValue, "e+");
 }*/
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......*/
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 PhysicsList::PhysicsList() : G4VModularPhysicsList() {
   SetVerboseLevel(1);
 

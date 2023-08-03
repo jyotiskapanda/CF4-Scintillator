@@ -27,9 +27,9 @@
 	man->CreateH1("1","Time in PMT2",50,0.,50.);
 	man->CreateH1("2","Time in PMT3",50,0.,50.);
 	man->CreateH1("3","Non Zero Energy Deposited in Chamber",100,0.0,0.20);
-	man->CreateH1("4","Count in PMT1",40,0.,50.);
-	man->CreateH1("5","Count in PMT2",40,0.,50.);
-	man->CreateH1("6","Count in PMT3",40,0.,50.);
+	man->CreateH1("4","Count in PMT1",100,0.,50.);
+	man->CreateH1("5","Count in PMT2",100,0.,50.);
+	man->CreateH1("6","Count in PMT3",100,0.,50.);
 	
 	
 }

@@ -73,12 +73,14 @@ void SteppingAction::UserSteppingAction(const G4Step *step)//G4Step* aStep
         if(volume == fCountingVolume1){
         	if(particleDef == opticalphoton){
         	G4int i1 = 1;
+        	if(step->GetTrack()->GetCreatorProcess()->GetProcessName() == "Scintillation"){
         	G4double time1   = step->GetTrack()->GetGlobalTime();
         	//G4cout<< "Scintillation Captured in PMT1! "<<G4endl;
         	//G4cout<< step->GetTrack()->GetCreatorProcess()->GetProcessName()  << G4endl ;
         	
         	//G4cout<< time1 <<G4endl;
-        	man->FillH1(0, time1);
+        	
+        	man->FillH1(0, time1);}
       		fEventAction->AddCount1(i1);
       		//step->GetTrack()->SetTrackStatus(fStopAndKill);
       		
@@ -87,11 +89,12 @@ void SteppingAction::UserSteppingAction(const G4Step *step)//G4Step* aStep
         if(volume == fCountingVolume2){
         	if(particleDef == opticalphoton){
         	G4int i2 = 1;
+        	if(step->GetTrack()->GetCreatorProcess()->GetProcessName() == "Scintillation"){
         	G4double time2   = step->GetTrack()->GetGlobalTime();
         	//G4cout<< "Scintillation Captured in PMT2! "<<G4endl;
         	//G4cout<< step->GetTrack()->GetCreatorProcess()->GetProcessName()  << G4endl ;
         	//time2 = time;
-        	man->FillH1(1, time2);
+        	man->FillH1(1, time2);}
       		fEventAction->AddCount2(i2);
       		//step->GetTrack()->SetTrackStatus(fStopAndKill);
       		}
@@ -99,11 +102,12 @@ void SteppingAction::UserSteppingAction(const G4Step *step)//G4Step* aStep
         if(volume == fCountingVolume3){
         	if(particleDef == opticalphoton){
         	G4int i3 = 1;
+        	if(step->GetTrack()->GetCreatorProcess()->GetProcessName() == "Scintillation"){
         	G4double time3   = step->GetTrack()->GetGlobalTime();
         	//G4cout<< "Scintillation Captured in PMT3! "<<G4endl;
         	//G4cout<< step->GetTrack()->GetCreatorProcess()->GetProcessName()  << G4endl ;
         	//time3 = time;
-        	man->FillH1(2, time3);
+        	man->FillH1(2, time3);}
       		fEventAction->AddCount3(i3);
       		//step->GetTrack()->SetTrackStatus(fStopAndKill);
       		}

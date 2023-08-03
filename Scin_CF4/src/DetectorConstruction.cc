@@ -81,15 +81,15 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   CF4->AddElement(elF,natoms=4);
   
   // ------------ Generate & Add Material Properties Table ------------
-  G4double hc = h_Planck*c_light;
-  //
+ 
   std::vector<G4double> photonEnergy = {
     
-    hc/800*nm, hc/750*nm, hc/700*nm, hc/650*nm, hc/600*nm, hc/550*nm, hc/500*nm, hc/450*nm, hc/400*nm, hc/350*nm, hc/300*nm, hc/250*nm, hc/200*nm
+    1.54981*eV, 1.65313*eV, 1.7712*eV, 1.9074*eV, 2.0664*eV, 2.2543*eV, 2.48*eV, 2.7552*eV, 3.0996*eV, 3.54242*eV, 4.1328*eV, 4.9593*eV, 6.1992*eV
   };
 
   std::vector<G4double> refractiveIndex1 = {
     1.000480, 1.000480, 1.000480, 1.0004805, 1.000481, 1.000482, 1.000485, 1.000488, 1.000490, 1.000495, 1.000498, 1.000510, 1.000525 
+    //2,2,2,2,2,2,2,2,2,2,2,2,2
   };//Source: R. Abjean, A. Bideau-Mehu, and Y. Guern. Refractive index of carbon tetrafluoride (cf4) in the 300-140 nm wavelength range. Nuclear Instruments and Methods in Physics Research Section A: Accelerators,Spectrometers, Detectors and Associated Equipment, 292(3):593–594, 1990.
   std::vector<G4double> absorption = {
     10.0 * m,  10.0 * m,  10.0 * m,  10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m, 10.0 * m
@@ -118,7 +118,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   // Adding a property from two std::vectors. Argument createNewKey is false
   // and spline is true.
   myScin->AddProperty("RINDEX", photonEnergy, refractiveIndex1, 13);
-  myScin->AddProperty("ABSLENGTH", photonEnergy, absorption, false, true);
+  myScin->AddProperty("ABSLENGTH", photonEnergy, absorption, 13);
 
   // Adding a property using a C-style array.
   // Spline interpolation isn't used for scintillation.
@@ -445,6 +445,7 @@ G4LogicalBorderSurface("reflector", fCalorimeterPV, worldPV,OpSurface);
   
   std::vector<G4double> efficiency = {
     1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1. ,1.
+    
   };
    
    OpSurfaceProperty -> AddProperty("REFLECTIVITY",photonEnergy,reflectivity,13);

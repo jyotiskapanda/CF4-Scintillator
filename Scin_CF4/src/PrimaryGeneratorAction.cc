@@ -51,7 +51,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
   G4ParticleDefinition* particle3
            = G4ParticleTable::GetParticleTable()->FindParticle("mu-");
   fParticleGun3->SetParticleDefinition(particle3);
-  fParticleGun3->SetParticleMomentumDirection(G4ThreeVector(0.8,-0.3,0.));
+  fParticleGun3->SetParticleMomentumDirection(G4ThreeVector(0.,-0.3,0.));
   fParticleGun3->SetParticleEnergy(100*GeV);
   fParticleGun3->SetParticlePosition(G4ThreeVector(0,40*cm,0));
   
@@ -82,6 +82,24 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   
   G4double xdir = (2.*(G4double)G4UniformRand()-1.);
   G4double zdir = (2.*(G4double)G4UniformRand()-1.);
+  
+  //=========Proton-Triton Generation in random position========================
+  
+  G4double Xpos1 = (2.*(G4double)G4UniformRand()-1.)*10.*cm;
+  G4double Ypos1 = (2.*(G4double)G4UniformRand()-1.)*10.*cm;
+  G4double Zpos1 = (2.*(G4double)G4UniformRand()-1.)*10.*cm;
+  
+  G4double xdir1 = (2.*(G4double)G4UniformRand()-1.);
+  G4double ydir1 = (2.*(G4double)G4UniformRand()-1.);
+  G4double zdir1 = (2.*(G4double)G4UniformRand()-1.);
+  
+  
+ /*fParticleGun1->SetParticlePosition(G4ThreeVector(Xpos1,Ypos1,Zpos1));
+ fParticleGun1->SetParticleMomentumDirection(G4ThreeVector(xdir1, ydir1, zdir1));
+ 
+ fParticleGun2->SetParticlePosition(G4ThreeVector(Xpos1,Ypos1,Zpos1));
+ fParticleGun2->SetParticleMomentumDirection(G4ThreeVector(-xdir1, -ydir1, -zdir1));*/
+  //============================================================================
  
   
  
