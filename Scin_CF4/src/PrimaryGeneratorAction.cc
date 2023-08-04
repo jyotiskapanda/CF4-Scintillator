@@ -94,11 +94,11 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double zdir1 = (2.*(G4double)G4UniformRand()-1.);
   
   
- /*fParticleGun1->SetParticlePosition(G4ThreeVector(Xpos1,Ypos1,Zpos1));
+ fParticleGun1->SetParticlePosition(G4ThreeVector(Xpos1,Ypos1,Zpos1));
  fParticleGun1->SetParticleMomentumDirection(G4ThreeVector(xdir1, ydir1, zdir1));
  
  fParticleGun2->SetParticlePosition(G4ThreeVector(Xpos1,Ypos1,Zpos1));
- fParticleGun2->SetParticleMomentumDirection(G4ThreeVector(-xdir1, -ydir1, -zdir1));*/
+ fParticleGun2->SetParticleMomentumDirection(G4ThreeVector(-xdir1, -ydir1, -zdir1));
   //============================================================================
  
   
@@ -110,7 +110,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //Comment and Uncomment the codes below depending on the generator needed:
   
   
-  //fParticleGun1->GeneratePrimaryVertex(anEvent);
-  //fParticleGun2->GeneratePrimaryVertex(anEvent);
-  fParticleGun3->GeneratePrimaryVertex(anEvent);
+  fParticleGun1->GeneratePrimaryVertex(anEvent);
+  fParticleGun2->GeneratePrimaryVertex(anEvent);
+  //fParticleGun3->GeneratePrimaryVertex(anEvent);
 }

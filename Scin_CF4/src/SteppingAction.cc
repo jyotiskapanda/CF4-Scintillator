@@ -66,6 +66,7 @@ void SteppingAction::UserSteppingAction(const G4Step *step)//G4Step* aStep
     
     
   G4double time1;
+  G4double time1C;
   G4double time2;
   G4double time3;
     //if(particleDef == opticalphoton){
@@ -81,6 +82,7 @@ void SteppingAction::UserSteppingAction(const G4Step *step)//G4Step* aStep
         	//G4cout<< time1 <<G4endl;
         	
         	man->FillH1(0, time1);}
+  
       		fEventAction->AddCount1(i1);
       		//step->GetTrack()->SetTrackStatus(fStopAndKill);
       		

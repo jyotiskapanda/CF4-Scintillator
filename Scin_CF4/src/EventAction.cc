@@ -61,6 +61,8 @@ void EventAction::EndOfEventAction( const G4Event*)
   if(count3>0){
   
     man->FillH1(6, count3);
+  }if(count1>0 && count2>0){
+    man->FillH2(0, count1, count2);
   }
   
   
